@@ -38,27 +38,6 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'MEDIA_FEATURES_FOR_BUDDYBOSS_FILES', __FILE__ );
 
 /**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-media-features-for-buddyboss-activator.php
- */
-function activate_media_features_for_buddyboss() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-media-features-for-buddyboss-activator.php';
-	Media_Features_For_BuddyBoss_Activator::activate();
-}
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-media-features-for-buddyboss-deactivator.php
- */
-function deactivate_media_features_for_buddyboss() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-media-features-for-buddyboss-deactivator.php';
-	Media_Features_For_BuddyBoss_Deactivator::deactivate();
-}
-
-register_activation_hook( __FILE__, 'activate_media_features_for_buddyboss' );
-register_deactivation_hook( __FILE__, 'deactivate_media_features_for_buddyboss' );
-
-/**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */

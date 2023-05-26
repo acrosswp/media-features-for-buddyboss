@@ -30,19 +30,55 @@ class Media_Features_For_BuddyBoss_Admin_Integration_Tab extends BP_Admin_Integr
 		return true;
 	}
 
-	public function is_addon_field_enabled( $default = 1 ) {
-		return (bool) get_option( 'media-features-for-buddyboss_field', $default );
+	public function pp_is_addon_field_enabled( $default = 1 ) {
+		return (bool) get_option( 'media-features-for-buddyboss-pp-field', $default );
 	}
 
-	public function settings_callback_field() {
+	public function cp_is_addon_field_enabled( $default = 1 ) {
+		return (bool) get_option( 'media-features-for-buddyboss-cp-field', $default );
+	}
+
+	public function vo_is_addon_field_enabled( $default = 1 ) {
+		return (bool) get_option( 'media-features-for-buddyboss-vo-field', $default );
+	}
+
+	public function pp_settings_callback_field() {
 		?>
-        <input name="media-features-for-buddyboss_field"
-               id="media-features-for-buddyboss_field"
+        <input name="media-features-for-buddyboss-pp-field"
+               id="media-features-for-buddyboss-pp-field"
                type="checkbox"
                value="1"
-			<?php checked( $this->is_addon_field_enabled() ); ?>
+			<?php checked( $this->pp_is_addon_field_enabled() ); ?>
         />
-        <label for="media-features-for-buddyboss_field">
+        <label for="media-features-for-buddyboss-pp-field">
+			<?php _e( 'Enable this option', 'media-features-for-buddyboss' ); ?>
+        </label>
+		<?php
+	}
+
+	public function cp_settings_callback_field() {
+		?>
+        <input name="media-features-for-buddyboss-cp-field"
+               id="media-features-for-buddyboss-cp-field"
+               type="checkbox"
+               value="1"
+			<?php checked( $this->cp_is_addon_field_enabled() ); ?>
+        />
+        <label for="media-features-for-buddyboss-cp-field">
+			<?php _e( 'Enable this option', 'media-features-for-buddyboss' ); ?>
+        </label>
+		<?php
+	}
+
+	public function vo_settings_callback_field() {
+		?>
+        <input name="media-features-for-buddyboss-vo-field"
+               id="memedia-features-for-buddyboss-vo-field"
+               type="checkbox"
+               value="1"
+			<?php checked( $this->vo_is_addon_field_enabled() ); ?>
+        />
+        <label for="media-features-for-buddyboss-vo-field">
 			<?php _e( 'Enable this option', 'media-features-for-buddyboss' ); ?>
         </label>
 		<?php
@@ -53,13 +89,24 @@ class Media_Features_For_BuddyBoss_Admin_Integration_Tab extends BP_Admin_Integr
 
 		$fields['media-features-for-buddyboss_settings_section'] = array(
 
-			'media-features-for-buddyboss_field' => array(
-				'title'             => __( 'Add-on Field', 'media-features-for-buddyboss' ),
-				'callback'          => array( $this, 'settings_callback_field' ),
+			'media-features-for-buddyboss-pp-field' => array(
+				'title'             => __( 'Allow user to set Profile Picture', 'media-features-for-buddyboss' ),
+				'callback'          => array( $this, 'pp_settings_callback_field' ),
 				'sanitize_callback' => 'absint',
 				'args'              => array(),
 			),
-
+			'media-features-for-buddyboss-cp-field' => array(
+				'title'             => __( 'Allow user to set Cover Photo', 'media-features-for-buddyboss' ),
+				'callback'          => array( $this, 'cp_settings_callback_field' ),
+				'sanitize_callback' => 'absint',
+				'args'              => array(),
+			),
+			'media-features-for-buddyboss-vo-field' => array(
+				'title'             => __( 'Allow user to View the Original Image', 'media-features-for-buddyboss' ),
+				'callback'          => array( $this, 'vo_settings_callback_field' ),
+				'sanitize_callback' => 'absint',
+				'args'              => array(),
+			),
 		);
 
 		return $fields;
@@ -85,7 +132,7 @@ class Media_Features_For_BuddyBoss_Admin_Integration_Tab extends BP_Admin_Integr
         return array(
 			'media-features-for-buddyboss_settings_section' => array(
 				'page'  => 'media-features-for-buddyboss',
-				'title' => __( 'Add-on Settings', 'media-features-for-buddyboss' ),
+				'title' => __( 'Media Features For BuddyBoss Settings', 'media-features-for-buddyboss' ),
 			),
 		);
     }

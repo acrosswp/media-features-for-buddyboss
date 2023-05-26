@@ -248,11 +248,6 @@ final class Media_Features_For_BuddyBoss {
 		$plugin_admin = new Media_Features_For_BuddyBoss_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'bp_setup_integrations', $plugin_admin, 'register_integration' );
-
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
 	}
 
 	/**
